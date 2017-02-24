@@ -2,6 +2,7 @@
 Hand-rolling classic sorting algos (all return sorted in ascending order).
     - selection sort
     - insertion sort
+    - mergesort
 """
 
 
@@ -22,6 +23,47 @@ def insertion_sort(unsorted_list):
                 # current number is greater than all nums in in_order
                 in_order.append(num)
     return in_order
+
+
+def mergesort(unsorted_list):
+    """
+    Recursively divides list into two halves, calls itself for each half, and
+    then merges the two sorted halves.
+    """
+    n = len(unsorted_list)
+    if n <= 1:
+        return unsorted_list
+
+    mid_pt = n // 2
+    unsorted_left = unsorted_list[:mid_pt]
+    unsorted_right = unsorted_list[mid_pt:]
+
+    sorted_left = mergesort(unsorted_left)
+    sorted_right = mergesort(unsorted_right)
+    sorted_list = merge(sorted_left, sorted_right)
+    return sorted_list
+
+
+def merge(sorted_l, sorted_r):
+    merged_list = []
+    ind_l, ind_r = 0, 0
+    len_l, len_r = len(sorted_l), len(sorted_r)
+    while ind_l < len_l and ind_r < len_r:
+        elem_l = sorted_l[ind_l]
+        elem_r = sorted_r[ind_r]
+        if elem_l <= elem_r:
+            merged_list.append(elem_l)
+            ind_l += 1
+        else:
+            merged_list.append(elem_r)
+            ind_r += 1
+    if ind_l < len_l:
+        # all elems of sorted_r have been merged
+        merged_list += sorted_l[ind_l:]
+    elif ind_r < len_r:
+        # all elems of sorted_l have been merged
+        merged_list += sorted_r[ind_r:]
+    return merged_list
 
 
 def selection_sort(unsorted_list):
