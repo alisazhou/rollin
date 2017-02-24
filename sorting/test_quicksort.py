@@ -6,16 +6,16 @@ def test_sort_empty_list():
     assert result == []
 
 
-def test_sort_list_in_random_order(random_unsorted, random_sorted):
+def test_sort_list_in_random_order(random_unsorted):
     result = quicksort(random_unsorted)
-    assert result == quicksort(random_sorted)
+    assert result == sorted(random_unsorted)
 
 
 def test_sort_list_of_repeated_number(repeated_number):
     result = quicksort(repeated_number)
-    assert result == repeated_number
+    assert result == sorted(repeated_number)
 
 
-def test_sort_list_in_descending_order(descending_unordered, descending_ordered):
+def test_sort_list_in_descending_order(descending_unordered):
     result = quicksort(descending_unordered)
-    assert result == descending_ordered
+    assert result == sorted(descending_unordered)
