@@ -3,6 +3,7 @@ Hand-rolling classic sorting algos (all return sorted in ascending order).
     - selection sort
     - insertion sort
     - mergesort
+    - quicksort
 """
 
 
@@ -80,3 +81,25 @@ def selection_sort(unsorted_list):
         unsorted_list_copy.remove(smallest)
         in_order.append(smallest)
     return in_order
+
+
+def quicksort(unsorted_list):
+    """
+    Pick first elem as pivot, partition list into less-than and greater-than
+    pivot, so that at end of iteration, pivot ends up in correct place. Recurse
+    on the two partitions.
+    """
+    if len(unsorted_list) <= 1:
+        return unsorted_list
+
+    pivot = unsorted_list[0]
+    less_unsorted, greater_unsorted = [], []
+    for num in unsorted_list[1:]:
+        if num < pivot:
+            less_unsorted.append(num)
+        else:
+            greater_unsorted.append(num)
+    less_sorted = quicksort(less_unsorted)
+    greater_sorted = quicksort(greater_unsorted)
+    sorted_list = less_sorted + [pivot] + greater_sorted
+    return sorted_list
