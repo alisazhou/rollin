@@ -29,11 +29,12 @@ def selection_sort(unsorted_list):
     In each iteration, pop the smallest, add it to the end of sorted array.
     """
     in_order = []
-    while unsorted_list:
-        smallest = unsorted_list[0]
-        for i in unsorted_list:
+    unsorted_list_copy = unsorted_list[:]
+    while unsorted_list_copy:
+        smallest = unsorted_list_copy[0]
+        for i in unsorted_list_copy:
             if i < smallest:
                 smallest = i
-        unsorted_list.remove(smallest)
+        unsorted_list_copy.remove(smallest)
         in_order.append(smallest)
     return in_order

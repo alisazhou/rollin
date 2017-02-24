@@ -1,15 +1,19 @@
 from sorting import selection_sort
 
 
+def test_sort_empty_list():
+    result = selection_sort([])
+    assert result == []
+
+
 def test_sort_list_in_random_order(random_unsorted, random_sorted):
     result = selection_sort(random_unsorted)
     assert result == random_sorted
 
 
 def test_sort_list_of_repeated_number(repeated_number):
-    orig_list = repeated_number[:]
     result = selection_sort(repeated_number)
-    assert result == orig_list
+    assert result == repeated_number
 
 
 def test_sort_list_in_descending_order(descending_unordered, descending_ordered):
